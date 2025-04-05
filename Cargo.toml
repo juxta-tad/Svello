@@ -1,0 +1,51 @@
+[package]
+name = "Svello"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies.bevy]
+version = "0.15.3" # Use the latest Bevy version
+# --- THE ABSOLUTE KEY ---
+default-features = false
+features = [
+    # Core rendering pipeline + windowing
+    "bevy_core_pipeline",
+    "bevy_render",
+    "bevy_winit",
+    "bevy_asset",
+
+    # --- Choose ONE Renderer (or none for headless) ---
+    "bevy_sprite", # Basic 2D (pulls in bevy_render)
+    "bevy_pbr",    # Basic 3D (pulls in more)
+
+    # --- Platform Specific (Likely needed on Linux) ---
+    # Uncomment ONE of these depending on your display server (check with `echo $XDG_SESSION_TYPE`)
+    #"x11",
+    "wayland",
+
+    # --- Common Additions (UNCOMMENT ONLY IF USED) ---
+    #"bevy_input",         # Keyboard/Mouse input
+    "bevy_audio", # Audio playback
+    "bevy_ui",    # Bevy's UI system
+    "bevy_text",  # Text rendering (often needed with UI)
+    "png",        # PNG image loading
+    "bevy_gilrs", # Gamepad input
+    #"bevy_log",           # Logging integration
+    #"filesystem_watcher", # Auto-reload assets
+]
+
+[dependencies]
+ndk-build = "0.10"  # Required for building NDK-based apps
+cargo-ndk = "3.5.4"
+# Optimize dependencies even in debug builds.
+# Makes initial compile of deps slower, but subsequent builds/linking faster.
+[profile.dev.package."*"]
+opt-level = 3
+
+# Optional: Slightly faster release builds (at cost of binary size)
+# [profile.release]
+# codegen-units = 16 # More parallelism
+# lto = "thin"       # Faster Link Time Optimization than "fat" or true
+# --- ONLY ENABLE WHAT YOU NEED ---
+# Start with the bare minimum for a window & maybe 2D.
+# UNCOMMENT features ONLY when your code breaks without them!
