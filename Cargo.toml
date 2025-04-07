@@ -3,6 +3,11 @@ name = "Svello"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+name = "svello"
+crate-type = ["cdylib"]
+
+
 [dependencies.bevy]
 version = "0.15.3" # Use the latest Bevy version
 # --- THE ABSOLUTE KEY ---
@@ -41,6 +46,13 @@ cargo-ndk = "3.5.4"
 # Makes initial compile of deps slower, but subsequent builds/linking faster.
 [profile.dev.package."*"]
 opt-level = 3
+
+[package.metadata.android]
+package = "com.example.svello"
+target_sdk_version = 33
+min_sdk_version = 24
+assets = "assets"
+res = "res"
 
 # Optional: Slightly faster release builds (at cost of binary size)
 # [profile.release]
