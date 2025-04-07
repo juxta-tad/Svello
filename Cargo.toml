@@ -4,9 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [lib]
-name = "svello"
-crate-type = ["cdylib"]
-
+name = "Svello"
+crate-type = ["lib", "cdylib"]
 
 [dependencies.bevy]
 version = "0.15.3" # Use the latest Bevy version
