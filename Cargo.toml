@@ -47,12 +47,6 @@ cargo-ndk = "3.5.4"
 [profile.dev.package."*"]
 opt-level = 3
 
-[package.metadata.android]
-package = "com.example.svello"
-target_sdk_version = 33
-min_sdk_version = 24
-assets = "assets"
-res = "res"
 
 # Optional: Slightly faster release builds (at cost of binary size)
 # [profile.release]
